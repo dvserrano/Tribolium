@@ -1,0 +1,17 @@
+body{
+    background-color: #297045;
+    padding: 1em;
+   
+}
+h1{
+    color: white;
+    text-align: center;
+    text-shadow: 5px;
+}
+
+.btn btn-primary{
+    background-color: #382633;
+     border-color: #382633;
+}
+
+.card-title{color:white; text-align: center;}
