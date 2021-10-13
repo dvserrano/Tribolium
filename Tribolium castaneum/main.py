@@ -36,8 +36,14 @@ def perfil():
 
 
 
+# rutas administrador
+@app.route('/buscarAdmin')
+def buscarAdmin():
+    return render_template('buscarAdmin.html')
 
-
+@app.route('/feedAdmin')
+def feedAdmin():
+    return render_template('feedAdmin.html')
 
 
 
