@@ -1,0 +1,30 @@
+body{
+    background-color: #297045;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+.image {
+	width: 200px;
+	height: 180px;
+	border-radius: 50%;
+}
+.card {
+    background-color: #297045;   
+    border: none;
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
+}
+p {
+    color: white;
+}
+h5 {
+    color: white;
+    font-weight: bolder;
+}
+h6 {
+    color: white;
+    font-weight: 500;
+}

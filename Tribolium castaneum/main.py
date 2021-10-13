@@ -34,6 +34,10 @@ def notificaciones():
 def perfil():
     return render_template('perfil.html')
 
+@app.route('/editar')
+def editar():
+    return render_template('Editardatos.html')
+
 
 
 # rutas administrador
