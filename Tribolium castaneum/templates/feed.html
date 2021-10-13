@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
+     
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,12 +12,15 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Primer ejemplo con Bootstraps 4</title>
+    <link rel="stylesheet" href="/Tribolium castaneum/src/css/feed.css">
+
+    <title>Feed</title>
   </head>
 
   <body>
+    <!-- Ejemplo de la barra del encabezado -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="
-      background-color: #571cdf!important;">
+      background-color: #2d9219!important;">
       <a class="navbar-brand" href="#"><i class="fas fa-home"></i>Aplicacion </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,25 +52,36 @@
 
     <hr>
 
-    <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-          <a class="btn btn-danger btn-lg" href="#" role="button">Learn more</a>
-        </p>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Whatsapp</h5>
-          <p class="card-text">Descripcion</p>
-          <a href="#" class="btn btn-primary">Detalles</a>
-        </div>
-      </div>
+
+
+<div class="row" style="padding-left: 50px;padding-right: 50px">
+    <div class="col-sm-6">
+        <div class="card" style="width: 30rem;">
+            <img src="/Tribolium castaneum/src/imagenes/WW.png" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Nombre de la imagen</h5>
+            <p class="card-text"><b>Nombre del usuario que creo la publicación,</b> junto a una descripción que este quiera hacerle.</p>
+            <a href="#" class="btn btn-primary" style="background-color: #382633; border: none;"><i class="fas fa-thumbs-up"></i></a>
+            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-thumbs-down"></i></a>
+            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-book"></i></a>
+            </div>
+        </div>  
     </div>
+    <div class="col-sm-6">
+        <div class="card" style="width: 30rem;">
+            <img src="/Tribolium castaneum/src/imagenes/WW.png" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Nombre de la imagen</h5>
+            <p class="card-text"><b>Nombre del usuario que creo la publicación,</b>  junto a una descripción que este quiera hacerle</p>
+            <a href="#" class="btn btn-primary" style="background-color: #382633; border: none;"><i class="fas fa-thumbs-up"></i></a>
+            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-thumbs-down"></i></a>
+            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-book"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
