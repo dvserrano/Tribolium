@@ -2,7 +2,7 @@ from flask import Flask
 from flask.templating import render_template
 app = Flask (__name__)
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def inicio():
     return render_template('login.html')
 
