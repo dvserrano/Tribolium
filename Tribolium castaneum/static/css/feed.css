@@ -9,3 +9,9 @@ body{
 .btn btn-primary{
    background-color: #382633;
 }
+
+.boton{
+    color: #fff !important;
+    position: absolute;
+    right: 10rem;
+}
