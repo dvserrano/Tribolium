@@ -12,6 +12,7 @@ body{
 
 .boton{
     color: #fff !important;
-    position: absolute;
+    position: fixed;
     right: 10rem;
+    bottom: 15px;
 }
