@@ -38,6 +38,10 @@ def perfil():
 def editar():
     return render_template('Editardatos.html')
 
+@app.route('/detalle')
+def detalle():
+    return render_template('detallepost.html')
+
 
 
 # rutas administrador
