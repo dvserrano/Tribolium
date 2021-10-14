@@ -13,14 +13,12 @@ const expresiones = {
 }
 
 const campos = {
-	usuario: false,
 	nombre: false,
 	snombre:false,
 	papellido:false,
 	sapellido:false,
 	password: false,
 	correo: false,
-	telefono: false
 }
 
 const validarFormulario = (e) => {
@@ -83,7 +81,7 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	const terminos = document.getElementById('terminos');
-	if(/*campos.usuario && campos.nombre &&*/ campos.password && campos.correo /*&& campos.telefono && terminos.checked*/ ){
+	if(campos.nombre && campos.snombre && campos.papellido && campos.sapellido && campos.correo && campos.password){
 		formulario.reset();
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');

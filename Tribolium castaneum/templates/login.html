@@ -53,11 +53,19 @@
                   <div class="control__indicator"></div>
                 </label>
                 <span class="ml-auto"><a  onclick="location.href='feedAdmin'" class="forgot-pass">Administrador</a></span> 
+              
+              </div>
+              <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="fas fa-exclamation-triangle m-auto"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
               </div>
 
-              <input type="submit" value="Iniciar Sesion" class="btn btn-block btn-primary" onclick="location.href='feed'"   href="">
-              <input type="submit" value="Registrate" class="btn btn-block btn-primary" onclick="location.href='registro'" href="">
-
+              <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit"  value="Iniciar Sesion" id="registro_c_exito" class="registro_c_exito formulario__btn btn btn-block btn-primary w-100 m-auto" onclick="location.href='feed'">Iniciar Sesion</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Inicio de sesión exitosa!</p>
+              </div>
+              <div class="formulario__grupo mt-3">
+                <button type="submit" value="Registrate" class="formulario__btn btn btn-block btn-primary w-100" onclick="location.href='registro'">Registrate</button>
+              </div>         
             </form>
           </div>
         </div>
