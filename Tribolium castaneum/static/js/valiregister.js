@@ -41,16 +41,9 @@ const validarFormulario = (e) => {
 		break;
 		case "password":
 			validarCampo(expresiones.password, e.target, 'password');
-			validarPassword2();
-		break;
-		case "password2":
-			validarPassword2();
 		break;
 		case "correo":
 			validarCampo(expresiones.correo, e.target, 'correo');
-		break;
-		case "telefono":
-			validarCampo(expresiones.telefono, e.target, 'telefono');
 		break;
 	}
 }
@@ -80,8 +73,6 @@ inputs.forEach((input) => {
 button.removeAttribute("onclick")
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
-
-	const terminos = document.getElementById('terminos');
 	if(campos.nombre && campos.snombre && campos.papellido && campos.sapellido && campos.correo && campos.password){
 		formulario.reset();
 

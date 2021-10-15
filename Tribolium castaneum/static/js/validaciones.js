@@ -52,13 +52,10 @@ inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
 });
-
 button.removeAttribute("onclick")
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
-	formulario.reset();	
-	
-	// const terminos = document.getElementById('terminos');
+	formulario.reset();
 	if(campos.password && campos.correo){
 		formulario.reset();		
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
