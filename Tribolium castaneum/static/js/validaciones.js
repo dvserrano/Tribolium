@@ -52,7 +52,7 @@ inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
 });
-button.removeAttribute("onclick")
+// button.removeAttribute("onclick")
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 	formulario.reset();
