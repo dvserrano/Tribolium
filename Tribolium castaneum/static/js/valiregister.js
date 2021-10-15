@@ -1,5 +1,6 @@
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
+const button = document.getElementById("formulario__reg");
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -76,7 +77,7 @@ inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
 });
-
+button.removeAttribute("onclick")
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
@@ -85,15 +86,11 @@ formulario.addEventListener('submit', (e) => {
 		formulario.reset();
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
-		setTimeout(() => {
-			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
-		}, 5000);
-
-		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
-			icono.classList.remove('formulario__grupo-correcto');
-		});
+		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+		button.setAttribute("onclick","location.href='feed'");
 	} else {
-		document.getElementById('registro_c_exito').classList.remove('registro_c_exito-activo');
 		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+		button.addEventListener('click', alert('Debes llenar todos los datos de forma correcta!!'));
+		button.removeAttribute("onclick")	
 	}
 });
