@@ -38,21 +38,21 @@ def perfil():
 def editar():
     return render_template('Editardatos.html')
 
-@app.route('/detalle')
+@app.route('/detalle' ,methods=['GET'])
 def detalle():
     return render_template('detallepost.html')
 
-@app.route('/perfilp')
+@app.route('/perfilp',methods=['GET'])
 def perfilp():
     return render_template('perfilPub.html')
 
 
 # rutas administrador
-@app.route('/buscarAdmin')
+@app.route('/buscarAdmin',methods=['POST', 'GET','PUT','DELETE'])
 def buscarAdmin():
     return render_template('buscarAdmin.html')
 
-@app.route('/feedAdmin')
+@app.route('/feedAdmin',methods=['POST', 'GET','PUT','DELETE'])
 def feedAdmin():
     return render_template('feedAdmin.html')
 
