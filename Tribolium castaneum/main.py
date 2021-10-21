@@ -1,14 +1,32 @@
-from flask import Flask
+from flask import Flask, request
 from flask.templating import render_template
+from formulario import Formulario
+import os
 app = Flask (__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/', methods=['POST', 'GET'])
 def inicio():
-    return render_template('login.html')
+    form= Formulario()
+    return render_template('login.html',form=form)
+
+@app.route('/feed',methods=['POST','GET'])
+def ir():
+    form = Formulario()
+    if request.method == "POST":
+        nombre = form.nombre.data
+        sNombre = form.sNombre.data
+        apellido = form.apellido.data
+        sApellido = form.sApellido.data
+        correo = form.correo.data
+        password = form.password.data
+        print(correo, password, nombre, sNombre, apellido, sApellido)
+    return render_template('feed.html')
 
 @app.route('/registro', methods=['POST', 'GET'])
 def registro():
-    return render_template('registro.html')
+    form= Formulario()
+    return render_template('registro.html',form=form)
 
 @app.route('/crear', methods=['GET'])
 def crear():
@@ -22,9 +40,9 @@ def buscar():
 def chat():
     return render_template('chatymensajes.html')
 
-@app.route('/feed')
-def feed():
-    return render_template('feed.html')
+# @app.route('/feed')
+# def feed():
+#     return render_template('feed.html')
 
 @app.route('/notificaciones')
 def notificaciones():

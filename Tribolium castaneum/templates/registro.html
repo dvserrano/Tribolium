@@ -29,65 +29,68 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>Registrarse en <strong>Tribolium castaneum</strong></h3>
-             <form action="#" method="post" class="formulario" id="formulario">
+             <form action="/registro" method="POST" class="formulario" id="formulario">
+                {{form.hidden_tag()}}
               <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Primer Nombre</label>
                 <div class="formulario__grupo-input">
-                  <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Juan">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Juan"> -->
+                  <p>
+                    {{form.nombre(size=41, placeholder="Juan", class="formulario__input")}}
+                  </p>
                 </div>
-                <p class="formulario__input-error">*El nombre tiene que ser de 4 a 16 dígitos.<br>*Este campo es obligatorio</p>
               </div>
               <div class="formulario__grupo" id="grupo__snombre">
                 <label for="nombre" class="formulario__label">Segundo Nombre</label>
                 <div class="formulario__grupo-input">
-                  <input type="text" class="formulario__input" name="snombre" id="snombre" placeholder="Gabriel">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="text" class="formulario__input" name="snombre" id="snombre" placeholder="Gabriel"> -->
+                  <p>
+                    {{form.sNombre(size=41, placeholder="Gabriel", class="formulario__input")}}
+                  </p>
                 </div>
-                <p class="formulario__input-error">El segundo nombre tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
               </div>
               <div class="formulario__grupo" id="grupo__papellido">
                 <label for="nombre" class="formulario__label">Primer Apellido</label>
                 <div class="formulario__grupo-input">
-                  <input type="text" class="formulario__input" name="papellido" id="papellido" placeholder="Rivera">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="text" class="formulario__input" name="papellido" id="papellido" placeholder="Rivera"> -->
+                  <p>
+                    {{form.apellido(size=41, placeholder="Rivera", class="formulario__input")}}
+                  </p>                  
                 </div>
-                <p class="formulario__input-error">El apellido tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
               </div>
               <div class="formulario__grupo" id="grupo__sapellido">
                 <label for="nombre" class="formulario__label">Segundo Apellido</label>
                 <div class="formulario__grupo-input">
-                  <input type="text" class="formulario__input" name="sapellido" id="sapellido" placeholder="Mosquera">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="text" class="formulario__input" name="sapellido" id="sapellido" placeholder="Mosquera"> -->
+                  <p>
+                    {{form.sApellido(size=41, placeholder="Mosquera", class="formulario__input")}}
+                  </p>
                 </div>
-                <p class="formulario__input-error">El segundo apellido tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
               </div>
               <div class="formulario__grupo" id="grupo__correo">
                 <label for="correo" class="formulario__label">Correo Electrónico</label>
                 <div class="formulario__grupo-input">
-                  <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com"> -->
+                  <p>
+                    {{form.correo(size=41, placeholder="your-email@gmail.com", class="formulario__input")}}
+                  </p>
                 </div>
-                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
               </div>
               <div class="formulario__grupo" id="grupo__password">
                 <label for="password" class="formulario__label">Contraseña</label>
                 <div class="formulario__grupo-input">
-                  <input type="password" class="formulario__input" name="password" id="password">
-                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                  <!-- <input type="password" class="formulario__input" name="password" id="password"> -->
+                  <p>
+                    {{form.password(size=41, placeholder="*******", class="formulario__input", id="password")}}
+                  </p>
                 </div>
-                <p class="formulario__input-error text-danger">La contraseña tiene que ser de 4 a 12 dígitos.</p>
               </div>
-              <div class="formulario__mensaje" id="formulario__mensaje">
-                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-              </div>
-              <div class="formulario__mensaje" id="formulario__mensaje">
-                <p><i class="fas fa-exclamation-triangle m-auto"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-              </div>
-
               <div class="formulario__grupo formulario__grupo-btn-enviar">
-                <button type="submit"  value="Iniciar Sesion" id="formulario__reg" class="formulario__btn btn btn-block btn-primary w-100 m-auto" onclick="location.href='feed'">Registrar</button>
-                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Registro exitosa!</p>
+                <!-- <button type="submit"  value="Iniciar Sesion" id="formulario__reg" class="formulario__btn btn btn-block btn-primary w-100 m-auto" onclick="location.href='feed'">Registrar</button> -->
+                <p>
+                  {{form.boton(type="submit", value="Registrar", class="formulario__btn btn btn-block btn-primary w-100 m-auto")}}
+                  
+                </p>
               </div>
             </form>
           </div>
@@ -104,7 +107,7 @@
     <script src="../static/js/popper.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
-    <script src="{{ url_for('static', filename='js/valiregister.js') }}"></script>
+    <script src="{{url_for('static', filename='js/valilogin.js')}}"></script>
   </body>
 </html>
 
