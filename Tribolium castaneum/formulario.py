@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, Length
 from wtforms.fields.html5 import EmailField
 
 class Formulario(FlaskForm):
+    usuario = StringField('usuario',validators=[DataRequired(message="El campo nombre es requerido")])
     nombre = StringField('nombre',validators=[DataRequired(message="El campo nombre es requerido")])
     sNombre = StringField('sNombre',validators=[DataRequired(message="El campo segundo nombre es requerido")])
     apellido = StringField('sNombre',validators=[DataRequired(message="El campo apellido es requerido")])

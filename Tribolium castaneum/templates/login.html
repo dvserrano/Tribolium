@@ -29,7 +29,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>Iniciar sesion en <strong>Tribolium castaneum</strong></h3>
-             <form action="/feed" method="POST" id="formulario" method="POST">
+             <form  action="/feed"  method="POST" id="formulario" method="POST">
               {{form.hidden_tag()}}
               <div class="formulario__grupo" id="grupo__correo">
                 <label for="correo" class="formulario__label">Usuario</label>
@@ -55,13 +55,13 @@
                 </label>
                 <span class="ml-auto"><a  onclick="location.href='feedAdmin'" class="forgot-pass">Administrador</a></span> 
               </div>
-              <div class="formulario__grupo2 mt-3">
+              <div class="formulario__grupo2 mt-3" >
                 <p>
                   {{form.boton(type="submit", value="Iniciar Sesion", class="formulario__btn btn btn-block btn-primary w-100 m-auto")}}
                 </p>
               </div>
             </form>
-            <form id="formularioRegis" action="/feed" method="POST">
+            <form id="formularioRegis"  action="/feed" method="POST">
               <div class="formulario__grupo2 mt-3">
                 <!-- <button type="submit" value="Registrate" class="btn btn-block btn-primary w-100" id="formulario__reg" onclick="location.href='registro'">Registrate</button> -->
                 <p>

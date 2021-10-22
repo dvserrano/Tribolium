@@ -1,14 +1,43 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from flask.templating import render_template
 from formulario import Formulario
+from werkzeug.security import check_password_hash, generate_password_hash
 import os
+import sqlite3
+
 app = Flask (__name__)
 app.secret_key = os.urandom(24)
 
 @app.route('/', methods=['POST', 'GET'])
 def inicio():
+    session.clear()
     form= Formulario()
     return render_template('login.html',form=form)
+
+
+#Intento fallido de conexión base de datos y validación de ingreso.
+# @app.route('/entrar', methods=['POST', 'GET'])
+# def entrar():
+#     form = Formulario()
+#     session.clear()
+#     if request.method == 'POST':
+#         correo = form.correo.data
+#         password = form.password.data
+#         with sqlite3.connect('data.db') as conexion:
+#             cur = conexion.cursor()
+#             sql = cur.execute(f"select password from usuarios where correo='{correo}'").fetchone()
+#             if(sql != None):
+#                 variable =sql[0]
+#                 if check_password_hash(variable,password):
+#                     session['correo']= correo
+#                     return "usuario permitido"
+#                     # return render_template("feed.html")
+#             return "usuario no permitido"
+            
+#     return ('error')
+#     # return render_template('login.html',form=form)
+
+ 
 
 @app.route('/feed',methods=['POST','GET'])
 def ir():
@@ -21,7 +50,8 @@ def ir():
         correo = form.correo.data
         password = form.password.data
         print(correo, password, nombre, sNombre, apellido, sApellido)
-    return render_template('feed.html')
+        return render_template('feed.html')
+        
 
 @app.route('/registro', methods=['POST', 'GET'])
 def registro():
