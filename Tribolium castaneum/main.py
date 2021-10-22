@@ -4,6 +4,7 @@ from formulario import Formulario
 from werkzeug.security import check_password_hash, generate_password_hash
 import os
 import sqlite3
+from markupsafe import escape
 
 app = Flask (__name__)
 app.secret_key = os.urandom(24)
@@ -14,28 +15,29 @@ def inicio():
     form= Formulario()
     return render_template('login.html',form=form)
 
-
-#Intento fallido de conexión base de datos y validación de ingreso.
-# @app.route('/entrar', methods=['POST', 'GET'])
-# def entrar():
-#     form = Formulario()
-#     session.clear()
-#     if request.method == 'POST':
-#         correo = form.correo.data
-#         password = form.password.data
-#         with sqlite3.connect('data.db') as conexion:
-#             cur = conexion.cursor()
-#             sql = cur.execute(f"select password from usuarios where correo='{correo}'").fetchone()
-#             if(sql != None):
-#                 variable =sql[0]
-#                 if check_password_hash(variable,password):
-#                     session['correo']= correo
-#                     return "usuario permitido"
-#                     # return render_template("feed.html")
-#             return "usuario no permitido"
+@app.route('/entrar', methods=['POST', 'GET'])
+def entrar():
+    form = Formulario()
+    session.clear()
+    if request.method == 'POST':
+        correo = form.correo.data
+        password = form.password.data
+        with sqlite3.connect('data.db') as conexion:
+            cur = conexion.cursor()
+            sql = cur.execute("select password from usuarios where correo=?", [correo]).fetchone()
+            print (sql)
+            print (correo)
+            if(sql != None):
+                variable =sql[0]
+                print (variable)
+                if variable == password:
+                # check_password_hash(variable,password):
+                    session['correo']= correo
+                    return render_template("feed.html")
+            return render_template("login.html",form=form)
             
-#     return ('error')
-#     # return render_template('login.html',form=form)
+    return ('error')
+
 
  
 
@@ -58,10 +60,34 @@ def registro():
     form= Formulario()
     return render_template('registro.html',form=form)
 
+@app.route('/registro/crear ',methods=['POST','GET'])
+def registrocrear():
+    form = Formulario()
+    if request.method == 'POST':
+        correo =  escape(form.correo.data)
+        password = escape(form.password.data)
+        nombre = form.nombre.data
+        sNombre = form.sNombre.data
+        apellido = form.apellido.data
+        sApellido = form.sApellido.data
+        cifrando = generate_password_hash(password,'sha512')
+        print("cifrando",cifrando)
+        if((correo == None or len(correo) == 0) or (password == None or len(password) == 0)):            
+            return render_template("feed.html",form=form)
+        else:
+            with sqlite3.connect('data.db') as conexion:
+                cur = conexion.cursor()
+                cur.execute('insert into usuarios (nombre1,nombre2,apellido1, apellido2, correo, password) values (?,?,?,?,?,?)'
+                            ,(nombre,sNombre,apellido, sApellido, correo,cifrando))
+                #confirma la transaccion
+                conexion.commit()
+                return ('El login se inserto correctamente')
+    return ('paso algo de error')
+
 @app.route('/crear', methods=['GET'])
 def crear():
     return render_template('CrearPub.html')
-
+  
 @app.route('/buscar')
 def buscar():
     return render_template('buscar.html')

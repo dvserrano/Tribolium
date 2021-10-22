@@ -13,7 +13,7 @@ class Formulario(FlaskForm):
     sApellido = StringField('sNombre',validators=[DataRequired(message="El campo segundo apellido es requerido")])
     correo = EmailField('correo',validators=[DataRequired(message="El campo correo es requerido")])
     password = PasswordField('password',validators=[DataRequired(message= "El campo correo es requerido"), Length(min=6, max=8)])
-    boton = SubmitField('Iniciar Sesión',render_kw={"onmouseover": "ir()"})
+    boton = SubmitField('Iniciar Sesión',render_kw={"onmouseover": "entrar()"})
     bot2 = SubmitField('Registrate',render_kw={"onmouseover": "registro()"})
 
 
