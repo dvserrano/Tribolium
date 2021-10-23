@@ -15,6 +15,8 @@ class Formulario(FlaskForm):
     password = PasswordField('password',validators=[DataRequired(message= "El campo correo es requerido"), Length(min=6, max=8)])
     boton = SubmitField('Iniciar Sesión',render_kw={"onmouseover": "entrar()"})
     bot2 = SubmitField('Registrate',render_kw={"onmouseover": "registro()"})
+    botonre = SubmitField('Registrar', render_kw={"onmouseover": "nuevo()"})
+
 
 
     

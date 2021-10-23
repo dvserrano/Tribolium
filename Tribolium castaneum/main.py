@@ -60,25 +60,27 @@ def registro():
     form= Formulario()
     return render_template('registro.html',form=form)
 
-@app.route('/registro/crear ',methods=['POST','GET'])
-def registrocrear():
+@app.route('/registro/nuevo ', methods=['POST','GET'])
+def nuevo():
     form = Formulario()
+    print('hola')
+    # session.clear()
     if request.method == 'POST':
         correo =  escape(form.correo.data)
         password = escape(form.password.data)
-        nombre = form.nombre.data
-        sNombre = form.sNombre.data
-        apellido = form.apellido.data
-        sApellido = form.sApellido.data
+        # nombre = form.nombre.data
+        # sNombre = form.sNombre.data
+        # apellido = form.apellido.data
+        # sApellido = form.sApellido.data
         cifrando = generate_password_hash(password,'sha512')
         print("cifrando",cifrando)
         if((correo == None or len(correo) == 0) or (password == None or len(password) == 0)):            
-            return render_template("feed.html",form=form)
+            return render_template('registro.html',form=form)
         else:
             with sqlite3.connect('data.db') as conexion:
                 cur = conexion.cursor()
-                cur.execute('insert into usuarios (nombre1,nombre2,apellido1, apellido2, correo, password) values (?,?,?,?,?,?)'
-                            ,(nombre,sNombre,apellido, sApellido, correo,cifrando))
+                cur.execute ('insert into USUARIOS (correo, password) values (?,?)',(correo,cifrando))
+                #cur.execute ('insert into USUARIOS (nombre1,nombre2,apellido1, apellido2, correo, password) values (?,?,?,?,?,?)',(nombre,sNombre,apellido, sApellido, correo,cifrando))
                 #confirma la transaccion
                 conexion.commit()
                 return ('El login se inserto correctamente')

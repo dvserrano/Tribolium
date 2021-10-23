@@ -29,7 +29,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>Registrarse en <strong>Tribolium castaneum</strong></h3>
-             <form action="/registro/crear" method="POST" class="formulario" id="formulario">
+             <form action="/registro/nuevo" method="'POST','GET'" class="formulario" id="formulario">
                 {{form.hidden_tag()}}
               <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Primer Nombre</label>
@@ -88,7 +88,7 @@
               <div class="formulario__grupo formulario__grupo-btn-enviar">
                 <!-- <button type="submit"  value="Iniciar Sesion" id="formulario__reg" class="formulario__btn btn btn-block btn-primary w-100 m-auto" onclick="location.href='feed'">Registrar</button> -->
                 <p>
-                  {{form.boton(type="submit", value="Registrar", class="formulario__btn btn btn-block btn-primary w-100 m-auto")}}
+                  {{form.botonre(type="submit", value="Registrar", class="formulario__btn btn btn-block btn-primary w-100 m-auto")}}
                   
                 </p>
               </div>
