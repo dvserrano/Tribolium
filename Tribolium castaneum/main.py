@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import os
 import sqlite3
 from markupsafe import escape
+import hashlib 
 
 app = Flask (__name__)
 app.secret_key = os.urandom(24)
@@ -24,14 +25,11 @@ def entrar():
         password = form.password.data
         with sqlite3.connect('data.db') as conexion:
             cur = conexion.cursor()
-            sql = cur.execute("select password from usuarios where correo=?", [correo]).fetchone()
-            print (sql)
-            print (correo)
+            sql = cur.execute("select password from usuario where correo=?", [correo]).fetchone()
             if(sql != None):
                 variable =sql[0]
-                print (variable)
-                if variable == password:
-                # check_password_hash(variable,password):
+                # if variable == password:
+                if check_password_hash(variable,password):
                     session['correo']= correo
                     return render_template("feed.html")
             return render_template("login.html",form=form)
@@ -60,7 +58,7 @@ def registro():
     form= Formulario()
     return render_template('registro.html',form=form)
 
-@app.route('/registro/nuevo ', methods=['POST','GET'])
+@app.route('/registro/nuevo', methods=['POST','GET'])
 def nuevo():
     form = Formulario()
     print('hola')
@@ -68,10 +66,10 @@ def nuevo():
     if request.method == 'POST':
         correo =  escape(form.correo.data)
         password = escape(form.password.data)
-        # nombre = form.nombre.data
-        # sNombre = form.sNombre.data
-        # apellido = form.apellido.data
-        # sApellido = form.sApellido.data
+        nombre = form.nombre.data
+        sNombre = form.sNombre.data
+        apellido = form.apellido.data
+        sApellido = form.sApellido.data
         cifrando = generate_password_hash(password,'sha512')
         print("cifrando",cifrando)
         if((correo == None or len(correo) == 0) or (password == None or len(password) == 0)):            
@@ -79,11 +77,11 @@ def nuevo():
         else:
             with sqlite3.connect('data.db') as conexion:
                 cur = conexion.cursor()
-                cur.execute ('insert into USUARIOS (correo, password) values (?,?)',(correo,cifrando))
-                #cur.execute ('insert into USUARIOS (nombre1,nombre2,apellido1, apellido2, correo, password) values (?,?,?,?,?,?)',(nombre,sNombre,apellido, sApellido, correo,cifrando))
+                #cur.execute ('insert into USUARIO (correo, password) values (?,?)',(correo,cifrando))
+                cur.execute ('insert into USUARIO (nombre1,nombre2,apellido1, apellido2, correo, password) values (?,?,?,?,?,?)',(nombre,sNombre,apellido, sApellido, correo,cifrando))
                 #confirma la transaccion
                 conexion.commit()
-                return ('El login se inserto correctamente')
+                return render_template('feed.html')
     return ('paso algo de error')
 
 @app.route('/crear', methods=['GET'])
