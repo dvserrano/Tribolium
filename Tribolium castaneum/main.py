@@ -108,9 +108,39 @@ def notificaciones():
 def perfil():
     return render_template('perfil.html')
 
-@app.route('/editar', methods=['POST', 'GET'])
+@app.route('/editar', methods=['POST','GET'])
 def editar():
     return render_template('Editardatos.html')
+
+# @app.route('/editarperfil', methods=['POST', 'GET'])
+# def editarperfil():
+#     form = Formulario()
+#     if request.method == 'POST':
+#         correo1 = escape(form.password.data)
+#         password1 = escape(form.password.data)
+#         password2 = escape(form.password.data)
+#         with sqlite3.connect('data.db') as conexion:
+#             cur = conexion.cursor()
+#             sql = cur.execute("select password from usuario where correo=?", [correo1]).fetchone()
+            
+#             # paso 2
+#             if(sql != None):
+#                 variable =sql[0]
+#                 if check_password_hash(variable,password1):
+#                     session['correo']= correo1
+#                     cifrando = generate_password_hash(password1,'sha512')
+#             if(password == None or len(password) == 0):            
+#                 return render_template('editar.html',form=form)
+#             else:
+#                 with sqlite3.connect('data.db') as conexion:
+#                     cur = conexion.cursor()
+#                     cur.execute('update USUARIO set password=? where correo=?',[cifrando])
+#                     conexion.commit()
+#                 if conexion.total_changes > 0:
+#                     return ('Se modifico correctamente')
+#             return ('No se actualizo el registro')
+#     return ('paso algo de error')
+#     # return render_template('Editardatos.html')
 
 @app.route('/detalle' ,methods=['GET'])
 def detalle():

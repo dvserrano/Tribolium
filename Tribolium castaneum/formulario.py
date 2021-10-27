@@ -17,6 +17,14 @@ class Formulario(FlaskForm):
     bot2 = SubmitField('Registrate',render_kw={"onmouseover": "registro()"})
     botonre = SubmitField('Registrar', render_kw={"onmouseover": "nuevo()"})
 
+    correo1 = EmailField('correo1',validators=[DataRequired(message="El campo correo es requerido")])
+    password1 = PasswordField('password1',validators=[DataRequired(message= "El campo correo es requerido"), Length(min=6, max=8)])
+    password2 = PasswordField('password2',validators=[DataRequired(message= "El campo correo es requerido"), Length(min=6, max=8)])
+    botact = SubmitField('Actualizar información', render_kw={"onmouseover": "editarperfil()"})
+
+
+
+
 
 
     
