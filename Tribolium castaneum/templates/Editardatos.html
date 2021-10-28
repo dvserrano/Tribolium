@@ -48,7 +48,8 @@
 </nav>
 
   <hr>
-  <form action="" method="post,get">
+  <form action="/editarperfil" method="POST" id="formulario">
+    {{form.hidden_tag()}}
    <div class="row" style="padding-left: 40rem;padding-right: 40rem;">
       <div class="col-sm-6">
           <div class="card" style="width: 18rem; ">
@@ -66,17 +67,21 @@
           <h6 class="card-subtitle mb-2">Nombre</h6>
           <p class="card-text">Profesor Super O</p>
           <h6 class="card-subtitle mb-2">Correo Electronico</h6>
-          <p class="email">psupero@uninorte.edu.co</p>
+          <p>{{form.correo1(size=41, placeholder="your-email@gmail.com", class="formulario__input")}}</p>
           <h6 class="card-subtitle mb-2">Contraseña</h6>
-          <p class="card-text">Escriba la antigua contraseña <input type="password"></p>
-          <p class="card-text">Escriba la nueva contraseña<input type="password"></p>
-          <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;float: right;">Actualizar informacion</a>
+          <h6 class="card-subtitle mb-2">Escriba la antigua contraseña</h6>
+          <p>{{form.password1(size=41, placeholder="*******", class="formulario__input", id="password1")}}</p>
+          <!-- <p class="card-text">Escriba la antigua contraseña <input type="password"></p> -->
+          <h6 class="card-subtitle mb-2">Escriba la nueva contraseña</h6>
+          <p>{{form.password1(size=41, placeholder="*******", class="formulario__input", id="password1")}}</p>
+          <!-- <p class="card-text">Escriba la nueva contraseña<input type="password"></p> -->
+          <!-- <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;float: right;">Actualizar informacion</a> -->
+          <p>{{form.botonact(type="submit", style="background-color: #382633;border: none;float: right;", value="Actualizar", class="formulario__btn btn btn-block btn-primary w-100 m-auto")}}</p>
+          </div>
         </div>
       </div>
-  </div>
- 
-</div>
-</form>
+    </div>
+  </form>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
