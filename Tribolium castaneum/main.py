@@ -1,7 +1,8 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, redirect, url_for
 from flask.templating import render_template
 from formulario import Formulario
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 import os
 import sqlite3
 from markupsafe import escape
@@ -84,9 +85,23 @@ def nuevo():
                 return render_template('feed.html')
     return ('paso algo de error')
 
-@app.route('/crear', methods=['GET'])
+UPLOAD_FOLDER = 'static/img'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+@app.route('/crear', methods=['GET', 'POST'])
 def crear():
+    if request.method == 'POST':
+        file = request.files['file']
+        
+        try:            
+            filename = secure_filename(file.filename)
+            imagen = file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return render_template('CrearPubC.html', imagen=imagen)
+             
+        except:
+            "Error"
+                
     return render_template('CrearPub.html')
+  
   
 @app.route('/buscar')
 def buscar():
