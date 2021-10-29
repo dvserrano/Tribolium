@@ -90,16 +90,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/crear', methods=['GET', 'POST'])
 def crear():
     if request.method == 'POST':
-        file = request.files['file']
-        
+        file = request.files['file']  
         try:            
             filename = secure_filename(file.filename)
-            imagen = file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return render_template('CrearPubC.html', imagen=imagen)
-             
+            basedir = os.path.abspath(os.path.dirname(__file__))
+            file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+            return render_template('CrearPubC.html', filename=filename)    
         except:
-            "Error"
-                
+            "Error"      
     return render_template('CrearPub.html')
   
   
