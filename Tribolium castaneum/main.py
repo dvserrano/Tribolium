@@ -227,6 +227,8 @@ def feedAdminEliminar(id_publicacion):
                 lista.append(temp)
             return redirect(url_for('feedAdmin'))
     return redirect(url_for('feedAdmin'))
+
+
     
 # if __name__ == "__main__":
 #     app.run(debug= True)
