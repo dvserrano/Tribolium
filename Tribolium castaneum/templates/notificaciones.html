@@ -63,17 +63,20 @@
     <div class="col-sm-6">
         <div class="card" style="width: 30rem;">
 
-            <img src="../static/imagenes/WW.png" class="card-img-top" alt="...">
+          <img src={{context[3]}} class="card-img-top" alt="...">
         </div>
     </div>
     <div class="">
       <div class="card-body">
-        <h5 class="card-title">Nombre de la imagen</h5>
-        <p class="card-text"><b>Les gusta a Nombre de usuario</b>  y 2210 personas más</p>
-        <a href="#" class="btn btn-primary" style="background-color: #382633; border: none;"><i class="fas fa-thumbs-up"></i></a>
-        <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-thumbs-down"></i></a>
+        <h5 class="card-title">{{context[1]}}</h5>
+        <h5 class="card-title">Fecha :{{context[2]}}</h5>
+        <p class="card-text"><b>Les gusta a </b> un total {{context[5]}} personas</p>
+        <p class="card-text"><b>No le gusta a </b> un total {{context[6]}} personas</p>
+        <p class="card-text"><b>Publicado Por {{context[7]}} </b>  </p>
+        <button class="btn btn-primary" onclick="likeFunction('{{context[0]}}')" style="background-color: #382633; border: none;"><i class="fas fa-thumbs-up"></i></button>
+        <button  class="btn btn-primary" onclick="DislikeFunction('{{context[0]}}')"  style="background-color: #382633;border: none;"><i class="fas fa-thumbs-down"></i></button>
         <a href="#" class="btn btn-primary" style="background-color: #382633;border: none;"><i class="fas fa-book" onclick="location.href='detalle'"></i></a>
-        </div>
+      </div>
         <div class="bg-light">
           <form action="">
             <button class="btn btn-primary float-left" style="border-radius: 0 ;background-color: #382633;border: none;" ><ion-icon name="happy-outline"></ion-icon></button>
@@ -94,5 +97,53 @@
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  </body>
+<script>
+  function likeFunction(publicacion) {
+    var pathname = window.location.href;
+    var data = JSON.stringify({
+    "like": 1,
+    "dislike": 0,
+    "id": publicacion
+    });
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+    location.reload();
+  }
+});
+
+xhr.open("PUT", pathname);
+xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send(data);
+  }
+  function DislikeFunction(publicacion) {
+    var pathname = window.location.href;
+    var data = JSON.stringify({
+    "like": 0,
+    "dislike": 1,
+    "id": publicacion
+    });
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+    location.reload();
+  }
+});
+
+xhr.open("PUT", pathname);
+xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send(data);
+  }
+</script>  
+</body>
 </html>
