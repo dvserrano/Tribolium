@@ -1,5 +1,6 @@
 from flask import Flask, request, session, redirect, url_for
 from flask.templating import render_template
+from flask_wtf import form
 from formulario import Formulario
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -40,7 +41,7 @@ def entrar():
 
  
 
-@app.route('/feed',methods=['POST','GET'])
+@app.route('/ir',methods=['POST','GET'])
 def ir():
     form = Formulario()
     if request.method == "POST":
@@ -85,7 +86,7 @@ def nuevo():
                 return render_template('feed.html')
     return ('paso algo de error')
 
-UPLOAD_FOLDER = 'static/img'
+UPLOAD_FOLDER = 'static/imagenes'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/crear', methods=['GET', 'POST'])
 def crear():
@@ -109,9 +110,9 @@ def buscar():
 def chat():
     return render_template('chatymensajes.html')
 
-# @app.route('/feed')
-# def feed():
-#     return render_template('feed.html')
+@app.route('/feed')
+def feed():
+    return render_template('feed.html')
 
 @app.route('/notificaciones')
 def notificaciones():
@@ -119,13 +120,14 @@ def notificaciones():
 
 @app.route('/perfil')
 def perfil():
-    return render_template('perfil.html', usuario="Valentina")
+    return render_template('perfil.html', usuario="Profesor Super O")
 
-@app.route('/editar', methods=['POST','GET'])
+@app.route('/editar', methods=["POST", "GET"])
 def editar():
-    return render_template('Editardatos.html')
+    form = Formulario()
+    return render_template('Editardatos.html', form=form)
 
-@app.route('/editarperfil', methods=['POST', 'GET'])
+@app.route('/editarperfil', methods=["POST", "GET"])
 def editarperfil():
     form = Formulario()
     # if 'usuario' in session:
