@@ -59,28 +59,19 @@
     <hr>
 
 <div class="row" style="padding-left: 50px;padding-right: 50px">
+  {% for context in context -%}
     <div class="col-sm-6">
         <div class="card" style="width: 30rem;">
-            <img src="../static/imagenes/WW.png" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Nombre de la imagen</h5>
-            <p class="card-text"><b>Nombre del usuario que creo la publicación,</b> junto a una descripción que este quiera hacerle.</p>
-            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none; float: right;"><i class="fas fa-trash-alt"></i></a>
-            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none; float: left;"><i class="fas fa-ban"></i></a>
-            </div>
-        </div>  
-    </div>
-    <div class="col-sm-6">
-        <div class="card" style="width: 30rem;">
-            <img src="../static/imagenes/WW.png" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Nombre de la imagen</h5>
-            <p class="card-text"><b>Nombre del usuario que creo la publicación,</b>  junto a una descripción que este quiera hacerle</p>
-            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none; float: right;"><i class="fas fa-trash-alt"></i></a>
-            <a href="#" class="btn btn-primary" style="background-color: #382633;border: none; float: left;"><i class="fas fa-ban"></i></a>
-            </div>
+            <img src={{context[3]}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{context[2]}}</h5>
+            <p class="card-text"><b>{{context[7]}},</b> {{context[1]}}</p>
+            <button class="btn btn-primary botonEliminar" onclick="outterFunction('{{context[0]}}')"   style="background-color: #382633;border: none; float: right;"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-primary botonEliminar" onclick="outterFunctiondos('{{context[0]}}')"   style="background-color: #382633;border: none; float: right;"><i class="fas fa-ban"></i></button>
+          </div>
         </div>
     </div>
+  {% endfor -%}
 </div>
 
     <!-- Optional JavaScript -->
@@ -90,5 +81,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--font awesome -->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--font awesome -->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <script>
+      function outterFunction(id) {
+        var pathname = window.location.href;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+          location.reload();
+        }
+        });
+
+        xhr.open("DELETE", pathname+"/"+id);
+
+        xhr.send();
+      }
+      function outterFunctiondos(id) {
+        window.location.href="http://127.0.0.1:5000/notificaciones/"+id;
+      }
+    </script>
   </body>
 </html>

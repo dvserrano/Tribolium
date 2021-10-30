@@ -117,9 +117,34 @@ def chat():
 def feed():
     return render_template('feed.html')
 
-@app.route('/notificaciones')
-def notificaciones():
-    return render_template('notificaciones.html')
+@app.route('/notificaciones/<id_publicacion>', methods=['POST', 'GET','PUT'])
+def notificaciones(id_publicacion):
+    if request.method == 'GET':
+        with sqlite3.connect('data.db') as conexion:
+            cur = conexion.cursor()
+            sql = cur.execute("select * from PUBLICACION WHERE id_publicacion=?",id_publicacion).fetchone()
+            user = cur.execute("select nombre1 from usuario where id_usuario=?",sql[4]).fetchone()
+            temp=(sql[0],sql[1],sql[2],sql[3],sql[4],sql[5],sql[6],user[0])
+            return render_template('notificaciones.html',context=temp)
+    if request.method == 'PUT':
+        request_data = request.get_json()
+        like= request_data['like']
+        dislike= request_data['dislike']
+        idpublicacion= request_data['id']
+        with sqlite3.connect('data.db') as conexion:
+            cur = conexion.cursor()
+            print(idpublicacion)
+            sql = cur.execute("select * from PUBLICACION WHERE id_publicacion=?",str(idpublicacion)).fetchone()
+            if(like>0):
+                suma=sql[5]+1
+                elm=cur.execute("UPDATE PUBLICACION SET me_gusta=? WHERE id_publicacion=?",[str(suma),str(idpublicacion)])
+            if(dislike):
+                suma=sql[6]+1
+                elm=cur.execute("UPDATE PUBLICACION SET no_gusta=? WHERE id_publicacion=?",[str(suma),str(idpublicacion)])
+            user = cur.execute("select nombre1 from usuario where id_usuario=?",sql[4]).fetchone()
+            temp=(sql[0],sql[1],sql[2],sql[3],sql[4],sql[5],sql[6],user[0])
+    return render_template('notificaciones.html',context=[])
+
 
 @app.route('/perfil')
 def perfil():
@@ -175,7 +200,33 @@ def buscarAdmin():
 
 @app.route('/feedAdmin',methods=['POST', 'GET','PUT','DELETE'])
 def feedAdmin():
-    return render_template('feedAdmin.html')
+    if request.method == 'GET':
+        with sqlite3.connect('data.db') as conexion:
+            cur = conexion.cursor()
+            sql = cur.execute("select * from PUBLICACION ").fetchall()
+            lista=[]
+            for sql in sql:
+                user = cur.execute("select nombre1 from usuario where id_usuario=?",sql[4]).fetchone()
+                temp=(sql[0],sql[1],sql[2],sql[3],sql[4],sql[5],sql[6],user[0])
+                lista.append(temp)
+            return render_template('feedAdmin.html',context=lista)
+    return render_template('feedAdmin.html',context=[])
+
+@app.route('/feedAdmin/<id_publicacion>',methods=['DELETE'])
+def feedAdminEliminar(id_publicacion):
+    print(id_publicacion)
+    if request.method == 'DELETE':
+        with sqlite3.connect('data.db') as conexion:
+            cur = conexion.cursor()
+            sqldos = cur.execute("DELETE from PUBLICACION WHERE id_publicacion=?",id_publicacion)
+            sql = cur.execute("select * from PUBLICACION ").fetchall()
+            lista=[]
+            for sql in sql:
+                user = cur.execute("select nombre1 from usuario where id_usuario=?",sql[4]).fetchone()
+                temp=(sql[0],sql[1],sql[2],sql[3],sql[4],sql[5],sql[6],user[0])
+                lista.append(temp)
+            return redirect(url_for('feedAdmin'))
+    return redirect(url_for('feedAdmin'))
 
 
 
