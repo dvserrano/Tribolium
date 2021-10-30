@@ -69,9 +69,8 @@
             <div class="row">
               <div class="col-sm-6 text-center"  >
                 <div class="card" style="background-color: #2e933c ;" >
-                  <input type="file" name="file" id="file" class="inputfile" accept="image/*" />
+                  <input type="file" name="file" id="file" class="inputfile" accept="image/*" required   />
                   <label for="file" > <img src="../static/imagenes/Fondo1.PNG" style="width: 400px; height: 300px;" alt=""> </label>
-                  <input class="btn btn-primary" type=submit value="Subir" style="background-color:  #382633; border: none;"></input>
                 </div>
               </div>
             </div>
@@ -79,10 +78,18 @@
           <div class="col-md-8">
             <div class="card-body" style="background-color: #2e933c; width: 800px;border-radius: 10px; padding: 1em;">
               <h5 class="card-title">Escribe aqui tu descripción</h5>
-              <textarea name="descripción" id="" cols="100" rows="5"  ></textarea>
+              <p>
+                {{form.descripcion(size=100,placeholder="Escribe aqui tu descripción")}}
+              </p>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button class="btn btn-primary me-md-2 mr-1" type="button" style="background-color:  #382633; border: none;">Publicar</button>
-                  <button class="btn btn-primary" type="button" style="background-color:  #382633; border: none;">Eliminar</button>
+                  <p>
+                    {{form.publicar(type="submit", value="Publicar", class="btn btn-primary me-md-2 mr-1", style="background-color:  #382633; border: none;")}}
+                  </p>
+                  <!-- <button class="btn btn-primary me-md-2 mr-1" type="button" style="background-color:  #382633; border: none;">Publicar</button> -->
+                  <!-- <button class="btn btn-primary" type="button" style="background-color:  #382633; border: none;">Eliminar</button> -->
+                  <p>
+                    {{form.eliminar(type="submit", value="Eliminar", class="btn btn-primary me-md-2 mr-1", style="background-color:  #382633; border: none;")}}
+                  </p>
               </div>
               </div>
           </div>

@@ -51,7 +51,7 @@ def ir():
         correo = form.correo.data
         password = form.password.data
         print(correo, password, nombre, sNombre, apellido, sApellido)
-        return render_template('feed.html')
+    return render_template('feed.html')
         
 
 @app.route('/registro', methods=['POST', 'GET'])
@@ -89,16 +89,19 @@ UPLOAD_FOLDER = 'static/img'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/crear', methods=['GET', 'POST'])
 def crear():
+    form = Formulario()
     if request.method == 'POST':
-        file = request.files['file']  
-        try:            
-            filename = secure_filename(file.filename)
-            basedir = os.path.abspath(os.path.dirname(__file__))
-            file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
-            return render_template('CrearPubC.html', filename=filename)    
-        except:
-            "Error"      
-    return render_template('CrearPub.html')
+        file = request.files['file']           
+        filename = secure_filename(file.filename)
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+        descripcion = form.descripcion.data
+        with sqlite3.connect('data.db') as conexion:
+                cur = conexion.cursor()
+                cur.execute ('insert into PUBLICACION (descripcion, fecha, img, id_usuario) values (?,?,?,?)',(descripcion, "hoy", filename, 1 ))
+                conexion.commit()
+        return render_template('feed.html', filename=filename)        
+    return render_template('CrearPub.html', form=form)
   
   
 @app.route('/buscar')
@@ -123,7 +126,8 @@ def perfil():
 
 @app.route('/editar', methods=['POST','GET'])
 def editar():
-    return render_template('Editardatos.html')
+    form = Formulario()
+    return render_template('Editardatos.html', form=form)
 
 @app.route('/editarperfil', methods=['POST', 'GET'])
 def editarperfil():

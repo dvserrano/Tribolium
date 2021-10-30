@@ -22,6 +22,9 @@ class Formulario(FlaskForm):
     password2 = PasswordField('password2',validators=[DataRequired(message= "El campo correo es requerido"), Length(min=6, max=8)])
     botact = SubmitField('Actualizar información', render_kw={"onmouseover": "editarperfil()"})
 
+    descripcion = StringField('descripcion',validators=[DataRequired(message="El campo nombre es requerido")])
+    publicar = SubmitField('Publicar',render_kw={"onmouseover": "crear()"})
+    eliminar = SubmitField('eliminar',render_kw={"onmouseover": "crear()"})
 
 
 
